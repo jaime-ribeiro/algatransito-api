@@ -2,6 +2,7 @@ package com.algaworks.algatransito.api.controller;
 
 import com.algaworks.algatransito.domain.model.Proprietario;
 import com.algaworks.algatransito.domain.repository.ProprietarioRepository;
+import com.algaworks.algatransito.domain.service.RegistroProprietarioService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,11 +17,18 @@ import java.util.Optional;
 @RequestMapping("/proprietarios")
 public class ProprietarioController {
 
+    private final RegistroProprietarioService registroProprietarioService;
     private final ProprietarioRepository proprietarioRepository;
 
+    public ProprietarioController(RegistroProprietarioService registroProprietarioService, ProprietarioRepository proprietarioRepository){
+        this.registroProprietarioService= registroProprietarioService;
+        this.proprietarioRepository = proprietarioRepository;
+    }
+   /* constructor para chamar o repository direto
     public ProprietarioController(ProprietarioRepository proprietarioRepository){
         this.proprietarioRepository = proprietarioRepository;
     }
+   */
     @GetMapping
     public List<Proprietario> listar(){
         return proprietarioRepository.findAll();
@@ -38,7 +46,8 @@ public class ProprietarioController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)  //Retornar 201 quando for criado
     public Proprietario adicionar(@Valid @RequestBody Proprietario proprietario){
-        return proprietarioRepository.save(proprietario);
+        return registroProprietarioService.salvar(proprietario);
+        //return proprietarioRepository.save(proprietario); //para quando não existia o service, repository chamado diretamente
     }
 
     @PutMapping("/{proprietarioId}")
@@ -48,7 +57,8 @@ public class ProprietarioController {
             return ResponseEntity.notFound().build();
         }
         proprietario.setId(proprietarioId);
-        Proprietario proprietarioAtualizado = proprietarioRepository.save(proprietario);
+        //Proprietario proprietarioAtualizado = proprietarioRepository.save(proprietario);
+        Proprietario proprietarioAtualizado = registroProprietarioService.salvar(proprietario);
 
         return ResponseEntity.ok(proprietarioAtualizado);
     }
@@ -58,7 +68,8 @@ public class ProprietarioController {
         if(!proprietarioRepository.existsById(proprietarioId)){
             return ResponseEntity.notFound().build();
         }
-        proprietarioRepository.deleteById(proprietarioId);
+        registroProprietarioService.excluir(proprietarioId);
+        //proprietarioRepository.deleteById(proprietarioId);
         return ResponseEntity.noContent().build();
     }
 }
