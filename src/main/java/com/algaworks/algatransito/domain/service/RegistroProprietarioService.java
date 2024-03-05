@@ -19,8 +19,6 @@ public class RegistroProprietarioService {
     //Esta annotation, se não conseguir salvar, ele dá um rollback
     @Transactional
     public Proprietario salvar(Proprietario proprietario){
-        //Quando for pesquisado o e-mail ele vai olhar para o proprietário que não é igual ao proprietário informado
-        //Ou seja, ele só vai pesquisar aqueles que são diferentes do e-mail, a pesquisa está sendo feita depois, e não um comparativo de e-mail.
         boolean emailEmUso = proprietarioRepository.findByEmail(proprietario.getEmail())
                 .filter(p -> !p.equals(proprietario))
                 .isPresent();
