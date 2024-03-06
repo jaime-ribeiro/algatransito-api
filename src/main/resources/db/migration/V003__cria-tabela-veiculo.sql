@@ -6,7 +6,7 @@ create table veiculo(
     placa varchar(7) not null,
     status varchar(20) not null,
     data_cadastro datetime not null,
-    data_apreensao datetime not null,
+    data_apreensao datetime,
 
     primary key (id)
 );

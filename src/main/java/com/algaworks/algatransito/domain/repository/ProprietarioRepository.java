@@ -12,5 +12,6 @@ public interface ProprietarioRepository extends JpaRepository<Proprietario, Long
     //List<Proprietario> findByNome(String nome);
     //O containing faz como se a busca fosse usando um "like" e aí não precisa ser exato
     List<Proprietario> findByNomeContaining(String nome);
+
     Optional<Proprietario> findByEmail(String email);
 }
