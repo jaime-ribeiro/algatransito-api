@@ -73,11 +73,4 @@ public class ProprietarioController {
         //proprietarioRepository.deleteById(proprietarioId);
         return ResponseEntity.noContent().build();
     }
-
-    //Para não criar um try catch em cada uma das resposta, se usa um exception handler
-    //Implementa um método que captura e trata exceções de um certo tipo
-    @ExceptionHandler(NegocioException.class)
-    public ResponseEntity<String> capturar(NegocioException e){
-        return ResponseEntity.badRequest().body(e.getMessage());
-    }
 }
