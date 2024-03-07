@@ -1,8 +1,10 @@
 package com.algaworks.algatransito.domain.model;
 
+import com.algaworks.algatransito.domain.validation.ValidationGroups;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -12,14 +14,14 @@ import lombok.Setter;
 @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
-//@Table(name = "tb_proprietario")
-public class Proprietario {
+public class Proprietario { //@Table(name = "tb_proprietario"), não é obrigatório
+
+    @NotNull(groups = ValidationGroups.ProprietarioId.class)
     @EqualsAndHashCode.Include
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    //Este @Column não é obrigatório
-    //@Column
+
     @NotBlank //Só usar o notblank não funciona, precisa adicionar no controller deve ser validado
     @Size(max = 60) //Permitindo o máximo de 60 caracteres
     private String nome;

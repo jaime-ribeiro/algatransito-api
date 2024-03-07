@@ -6,6 +6,7 @@ import com.algaworks.algatransito.domain.repository.ProprietarioRepository;
 import com.algaworks.algatransito.domain.repository.VeiculoRepository;
 import com.algaworks.algatransito.domain.service.RegistroProprietarioService;
 import com.algaworks.algatransito.domain.service.RegistroVeiculoService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -37,7 +38,7 @@ public class VeiculoController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Veiculo cadastrar(@RequestBody Veiculo veiculo){
+    public Veiculo cadastrar(@Valid @RequestBody Veiculo veiculo){
         return registroVeiculoService.cadastrar(veiculo);
     }
 
