@@ -32,8 +32,8 @@ public class Veiculo {
 
     @Valid //Passa o valid pra ele obedecer a validação em cascata que será realizada de Veículo para Proprietário
     @ConvertGroup(from = Default.class, to = ValidationGroups.ProprietarioId.class)
-    @ManyToOne
     @NotNull //não colocamos not blank pq não é uma String, só queremos garantir que tenha um objeto atribuído
+    @ManyToOne
     private Proprietario proprietario;
 
     @NotBlank
