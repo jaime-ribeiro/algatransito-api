@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 
 @Service
 public class RegistroVeiculoService {
@@ -38,7 +39,7 @@ public class RegistroVeiculoService {
 
         novoVeiculo.setProprietario(proprietario);
         novoVeiculo.setStatus(StatusVeiculo.REGULAR);
-        novoVeiculo.setDataCadastro(LocalDateTime.now());
+        novoVeiculo.setDataCadastro(OffsetDateTime.now());
         return veiculoRepository.save(novoVeiculo);
     }
 }

@@ -15,6 +15,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 
 @Getter
 @Setter
@@ -53,7 +54,7 @@ public class Veiculo {
 
     //caso o seu import seja JsonProperty.Access você poderá botar só Access.READ_ONLY que funcionará
     @JsonProperty(access = Access.READ_ONLY)
-    private LocalDateTime dataCadastro; //o jakarta configura mesmo que tenha _ no nome da coluna, ele identifica
+    private OffsetDateTime dataCadastro; //o jakarta configura mesmo que tenha _ no nome da coluna, ele identifica sem problema
 
     @JsonProperty(access = Access.READ_ONLY)
     private LocalDateTime dataApreensao;
