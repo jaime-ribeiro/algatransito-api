@@ -57,6 +57,6 @@ public class Veiculo {
     private OffsetDateTime dataCadastro; //o jakarta configura mesmo que tenha _ no nome da coluna, ele identifica sem problema
 
     @JsonProperty(access = Access.READ_ONLY)
-    private LocalDateTime dataApreensao;
+    private OffsetDateTime dataApreensao;
 
 }
