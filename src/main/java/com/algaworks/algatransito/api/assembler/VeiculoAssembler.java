@@ -14,10 +14,11 @@ import java.util.List;
 @Component
 public class VeiculoAssembler {
 
+    private final ModelMapper modelMapper;
+
     public VeiculoAssembler(ModelMapper modelMapper){
         this.modelMapper = modelMapper;
     }
-    private final ModelMapper modelMapper;
 
     public Veiculo toEntity(VeiculoInput veiculoInput){
           return modelMapper.map(veiculoInput, Veiculo.class);
