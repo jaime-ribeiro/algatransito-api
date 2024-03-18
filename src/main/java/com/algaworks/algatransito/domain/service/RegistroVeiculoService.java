@@ -19,6 +19,11 @@ public class RegistroVeiculoService {
         this.veiculoRepository = veiculoRepository;
         this.registroProprietarioService = registroProprietarioService;
     }
+
+    public Veiculo buscar(Long veiculoId){
+        return veiculoRepository.findById(veiculoId)
+                .orElseThrow(() -> new NegocioException("Veiculo não encontrado"));
+    }
     @Transactional
     public Veiculo cadastrar(Veiculo novoVeiculo){
         if (novoVeiculo.getId()!=null){
