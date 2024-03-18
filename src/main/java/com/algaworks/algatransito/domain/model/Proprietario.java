@@ -16,7 +16,6 @@ import lombok.Setter;
 @Entity
 public class Proprietario { //@Table(name = "tb_proprietario"), não é obrigatório
 
-    @NotNull(groups = ValidationGroups.ProprietarioId.class)
     @EqualsAndHashCode.Include
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
