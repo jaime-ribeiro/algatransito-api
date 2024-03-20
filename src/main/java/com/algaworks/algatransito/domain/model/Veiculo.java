@@ -56,7 +56,7 @@ public class Veiculo {
 
     public void removerApreensao(){
         if(naoEstaApreendido()){
-            throw new NegocioException("Veículo já se encontra regular");
+            throw new NegocioException("Veículo não está apreendido");
         }
         setStatus(StatusVeiculo.REGULAR);
         setDataApreensao(null);
